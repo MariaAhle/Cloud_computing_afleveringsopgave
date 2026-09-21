@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wp/dBWBsKIY=",
+  "success": true,
+  "projectFilePath": "/Users/mariaahle/src/semester3/Cloud computing/afleveringsopgave/SupportWebApp/SupportWebApp.csproj",
+  "expectedPackageFiles": [
+    "/Users/mariaahle/.nuget/packages/microsoft.aspnetcore.app.internal.assets/10.0.5/microsoft.aspnetcore.app.internal.assets.10.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}
