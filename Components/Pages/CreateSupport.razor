@@ -1,0 +1,48 @@
+@page "/create-support"
+@rendermode InteractiveServer
+@using SupportWebApp.Models
+@using SupportWebApp.Services
+@inject CosmosDbService CosmosDbService
+
+<h3>Opret supporthenvendelse</h3>
+
+<EditForm Model="@supportMessage" OnSubmit="@CreateSupportMessage" FormName="CreateSupport">
+    <DataAnnotationsValidator />
+
+    <div>
+        <label>Navn:</label>
+        <InputText @bind-Value="supportMessage.ContactName" />
+        <ValidationMessage For="@(() => supportMessage.ContactName)" />
+    </div>
+
+    <div>
+        <label>Email:</label>
+        <InputText @bind-Value="supportMessage.Email" />
+        <ValidationMessage For="@(() => supportMessage.Email)" />
+    </div>
+
+    <div>
+        <label>Telefon:</label>
+        <InputText @bind-Value="supportMessage.Phone" />
+        <ValidationMessage For="@(() => supportMessage.Phone)" />
+    </div>
+
+    <div>
+        <label>Kategori:</label>
+        <InputText @bind-Value="supportMessage.Category" />
+        <ValidationMessage For="@(() => supportMessage.Category)" />
+    </div>
+
+    <button type="submit">Opret henvendelse</button>
+</EditForm>
+
+@code {
+    private SupportMessage supportMessage = new();
+
+    private async Task CreateSupportMessage(EditContext editContext)
+    {
+        Console.WriteLine("FORMULAREN BLEV SUBMITTED");
+
+        await CosmosDbService.AddSupportMessageAsync(supportMessage);
+    }
+}

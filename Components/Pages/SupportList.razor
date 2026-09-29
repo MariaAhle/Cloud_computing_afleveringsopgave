@@ -1,0 +1,47 @@
+@page "/support-list"
+@rendermode InteractiveServer
+
+@using SupportWebApp.Models
+@using SupportWebApp.Services
+@inject CosmosDbService CosmosDbService
+
+<h3>Supporthenvendelser</h3>
+
+@if (supportMessages.Count == 0)
+{
+    <p>Ingen henvendelser fundet.</p>
+}
+else
+{
+    <table>
+        <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Kategori</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        @foreach (var message in supportMessages)
+        {
+            <tr>
+                <td>@message.ContactName</td>
+                <td>@message.Email</td>
+                <td>@message.Phone</td>
+                <td>@message.Category</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<SupportMessage> supportMessages = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        supportMessages = await CosmosDbService.GetSupportMessagesAsync();
+    }
+}
