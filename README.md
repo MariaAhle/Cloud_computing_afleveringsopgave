@@ -8,7 +8,7 @@ Formålet med projektet er at lave en support-app, hvor en bruger kan oprette he
 
 Man opretter en ny database med CLI. Først logger man ind med sit az login og vælger abonnement med az account set. Derefter opretter vi en ressourcegruppe med az group create og en Cosmos DB-konto til NoSQL med az cosmosdb create
 
-Databasen oprettes med az cosmosdb SQL database create, og containeren oprettes med az cosmosdb SQL container create. Containerens partition key skal være /category, så den passer til løsningen. Til sidst konfigureres appen med connection string, databasenavn og containernavn via lokale User Secrets.
+Databasen oprettes med az cosmosdb SQL database create, og containeren oprettes med az cosmosdb SQL container create. Containerens partition key skal være /category, så den passer til løsningen. Til sidst konfigureres appen med connection string, databasenavn og containernavn via lokale User Secrets
 
 ## Beskriv status – hvad nåede I, hvad mangler og hvad synes I skal være næste trin:
 
