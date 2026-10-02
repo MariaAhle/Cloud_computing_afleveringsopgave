@@ -7,6 +7,14 @@
 
 <h3>Supporthenvendelser</h3>
 
+<label for="categoryFilter">Kategori:</label>
+<select id="categoryFilter" @onchange="ChangeCategory">
+    <option value="">Alle</option>
+    <option value="Reservedele">Reservedele</option>
+    <option value="Reparation">Reparation</option>
+    <option value="Support">Support</option>
+</select>
+
 @if (supportMessages.Count == 0)
 {
     <p>Ingen henvendelser fundet.</p>
@@ -43,5 +51,20 @@ else
     protected override async Task OnInitializedAsync()
     {
         supportMessages = await CosmosDbService.GetSupportMessagesAsync();
+    }
+    
+    private async Task ChangeCategory(ChangeEventArgs e)
+    {
+        var category = e.Value?.ToString() ?? "";
+
+        if (string.IsNullOrEmpty(category))
+        {
+            supportMessages = await CosmosDbService.GetSupportMessagesAsync();
+        }
+        else
+        {
+            supportMessages =
+                await CosmosDbService.GetSupportMsgByCategoryAsync(category);
+        }
     }
 }

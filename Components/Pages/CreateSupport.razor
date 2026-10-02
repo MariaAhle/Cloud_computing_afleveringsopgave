@@ -6,7 +6,7 @@
 
 <h3>Opret supporthenvendelse</h3>
 
-<EditForm Model="@supportMessage" OnSubmit="@CreateSupportMessage" FormName="CreateSupport">
+<EditForm Model="@supportMessage" OnValidSubmit="@CreateSupportMessage" FormName="CreateSupport">
     <DataAnnotationsValidator />
 
     <div>
@@ -26,10 +26,15 @@
         <InputText @bind-Value="supportMessage.Phone" />
         <ValidationMessage For="@(() => supportMessage.Phone)" />
     </div>
-
+    
     <div>
         <label>Kategori:</label>
-        <InputText @bind-Value="supportMessage.Category" />
+        <InputSelect @bind-Value="supportMessage.Category">
+            <option value="">Vælg kategori</option>
+            <option value="Reservedele">Reservedele</option>
+            <option value="Reparation">Reparation</option>
+            <option value="Support">Support</option>
+        </InputSelect>
         <ValidationMessage For="@(() => supportMessage.Category)" />
     </div>
 
